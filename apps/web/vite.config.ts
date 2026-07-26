@@ -7,6 +7,12 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: [
+      // Kept ahead of the package aliases; "@/" cannot collide with the
+      // "@react-workshop/*" prefixes below.
+      {
+        find: "@/",
+        replacement: `${resolve(__dirname, "src")}/`
+      },
       {
         find: "@react-workshop/ui/styles.css",
         replacement: resolve(__dirname, "../../packages/ui/src/styles.css")
