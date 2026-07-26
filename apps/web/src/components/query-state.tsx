@@ -1,5 +1,5 @@
-import { HttpError } from "@react-workshop/http-client";
 import { Button } from "@react-workshop/ui/button";
+import { resolveErrorMessage } from "@/utils/error-message";
 
 export type QueryStateProps = {
   isLoading: boolean;
@@ -10,14 +10,6 @@ export type QueryStateProps = {
   emptyLabel?: string;
   onRetry?: () => void;
 };
-
-export function resolveErrorMessage(error: Error | null | undefined): string {
-  if (error instanceof HttpError && error.status) {
-    return `Request failed with status ${error.status}. Please try again.`;
-  }
-
-  return "Something went wrong while loading this content.";
-}
 
 /**
  * Renders the shared loading / error / empty states and `null` once the caller
