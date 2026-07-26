@@ -31,7 +31,8 @@ export function ProductCard({ actions, item, onAddToCart }: ProductCardProps) {
 
   return (
     <article className="group relative overflow-hidden bg-product">
-      <Link className="block" tabIndex={-1} to={href}>
+      {/* Hidden from assistive tech: the heading below links to the same page. */}
+      <Link aria-hidden="true" className="block" tabIndex={-1} to={href}>
         <img
           alt={item.name}
           className="h-[301px] w-full object-cover"
