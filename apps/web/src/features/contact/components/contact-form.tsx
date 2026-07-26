@@ -39,7 +39,7 @@ export function ContactForm() {
           aria-invalid={errors.name ? true : undefined}
           className={cn(controlClass, errors.name && "border-danger")}
           id={nameId}
-          placeholder="Abc"
+          placeholder="Tai Le Tan"
           {...register("name", {
             required: "Name is required",
             minLength: { value: 2, message: "Name must be at least 2 characters" }
@@ -58,7 +58,7 @@ export function ContactForm() {
           aria-invalid={errors.email ? true : undefined}
           className={cn(controlClass, errors.email && "border-danger")}
           id={emailId}
-          placeholder="abc@def.com"
+          placeholder="Tai.LeTan@nashtechglobal.com"
           type="email"
           {...register("email", {
             required: "Email is required",

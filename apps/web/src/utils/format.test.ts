@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { calcDiscountPercent, formatPrice, formatThousands } from "./format";
+import {
+  calcDiscountPercent,
+  formatPrice,
+  formatThousands,
+  reformatPriceText
+} from "./format";
 
 describe("formatThousands", () => {
   it("groups thousands with dots", () => {
@@ -19,9 +24,25 @@ describe("formatThousands", () => {
 });
 
 describe("formatPrice", () => {
-  it("prefixes the rupiah symbol", () => {
-    expect(formatPrice(25000000)).toBe("Rp 25.000.000");
-    expect(formatPrice(0)).toBe("Rp 0");
+  it("suffixes the dong currency code", () => {
+    expect(formatPrice(25000000)).toBe("25.000.000 VND");
+    expect(formatPrice(0)).toBe("0 VND");
+  });
+});
+
+describe("reformatPriceText", () => {
+  it("converts the API's pre-formatted rupiah strings to VND", () => {
+    expect(reformatPriceText("Rp 22.900.000")).toBe("22.900.000 VND");
+    expect(reformatPriceText("Rp 150.000")).toBe("150.000 VND");
+  });
+
+  it("is idempotent for values already in VND", () => {
+    expect(reformatPriceText("22.900.000 VND")).toBe("22.900.000 VND");
+  });
+
+  it("returns the input untouched when it holds no digits", () => {
+    expect(reformatPriceText("Price on request")).toBe("Price on request");
+    expect(reformatPriceText("")).toBe("");
   });
 });
 

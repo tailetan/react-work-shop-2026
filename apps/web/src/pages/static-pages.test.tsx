@@ -24,7 +24,10 @@ describe("ContactPage", () => {
     expect(screen.getByRole("heading", { name: "Address" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Phone" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Working Time" })).toBeInTheDocument();
-    expect(screen.getByText(/236 5th SE Avenue/)).toBeInTheDocument();
+    expect(
+      screen.getByText("364 Cong Hoa Street, Tan Binh District")
+    ).toBeInTheDocument();
+    expect(screen.getByText("Mobile: +(84)969004098")).toBeInTheDocument();
 
     expect(screen.getByLabelText("Your name")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();

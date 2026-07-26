@@ -53,12 +53,12 @@ describe("CartTable", () => {
       "href",
       "/product/asgaard-sofa"
     );
-    // Unit price Rp 25.000.000 x 2 units.
-    expect(within(rows[0]!).getByText("Rp 25.000.000")).toBeInTheDocument();
-    expect(within(rows[0]!).getByText("Rp 50.000.000")).toBeInTheDocument();
+    // Unit price 25.000.000 x 2 units.
+    expect(within(rows[0]!).getByText("25.000.000 VND")).toBeInTheDocument();
+    expect(within(rows[0]!).getByText("50.000.000 VND")).toBeInTheDocument();
 
     // A single unit repeats the price as the line subtotal.
-    expect(within(rows[1]!).getAllByText("Rp 21.400.000")).toHaveLength(2);
+    expect(within(rows[1]!).getAllByText("21.400.000 VND")).toHaveLength(2);
   });
 
   it("describes the selected variant", () => {

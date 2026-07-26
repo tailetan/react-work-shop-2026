@@ -25,7 +25,9 @@ describe("SiteLayout", () => {
 
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Furniro." })).toBeInTheDocument();
-    expect(screen.getByText(/2026 Furniro\. All rights reserved/)).toBeInTheDocument();
+    expect(
+      screen.getByText("2026 Furniro by Tai Le Tan. All rights reserved")
+    ).toBeInTheDocument();
   });
 
   it("renders the footer link columns and newsletter form", () => {
@@ -33,6 +35,7 @@ describe("SiteLayout", () => {
 
     const footer = screen.getByRole("contentinfo");
 
+    expect(footer).toHaveTextContent("364 Cong Hoa Street, Tan Binh District");
     expect(footer).toHaveTextContent("Links");
     expect(footer).toHaveTextContent("Help");
     expect(footer).toHaveTextContent("Payment Options");

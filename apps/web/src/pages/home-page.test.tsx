@@ -34,7 +34,7 @@ describe("HomePage", () => {
       await screen.findByRole("heading", { name: "Asgaard Sofa" })
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Outdoor Sofa Set" })).toBeInTheDocument();
-    expect(screen.getByText("Rp 25.000.000")).toBeInTheDocument();
+    expect(screen.getByText("25.000.000 VND")).toBeInTheDocument();
   });
 
   it("adds a product to the cart from the grid", async () => {

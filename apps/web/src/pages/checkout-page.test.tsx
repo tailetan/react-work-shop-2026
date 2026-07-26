@@ -24,10 +24,10 @@ const line: CartLine = {
 async function fillBilling(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText("First Name"), "Tai");
   await user.type(screen.getByLabelText("Last Name"), "Le");
-  await user.type(screen.getByLabelText("Street address"), "400 University Drive");
-  await user.type(screen.getByLabelText("Town / City"), "Coral Gables");
-  await user.type(screen.getByLabelText("ZIP code"), "33134");
-  await user.type(screen.getByLabelText("Phone"), "+84 546 6789");
+  await user.type(screen.getByLabelText("Street address"), "364 Cong Hoa Street");
+  await user.type(screen.getByLabelText("Town / City"), "Ho Chi Minh City");
+  await user.type(screen.getByLabelText("ZIP code"), "70000");
+  await user.type(screen.getByLabelText("Phone"), "+(84)969004098");
   await user.type(screen.getByLabelText("Email address"), "tai@example.com");
 }
 

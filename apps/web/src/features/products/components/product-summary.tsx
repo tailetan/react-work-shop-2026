@@ -45,7 +45,8 @@ export function ProductSummary({ detail }: { detail: ProductDetail }) {
   return (
     <div>
       <h1 className="text-[32px] font-normal md:text-[42px]">{detail.name}</h1>
-      <p className="mt-2 text-2xl font-medium text-muted">{detail.priceText}</p>
+      {/* Formatted from the numeric price; the API's priceText is in rupiah. */}
+      <p className="mt-2 text-2xl font-medium text-muted">{formatPrice(detail.price)}</p>
       {detail.originalPrice && detail.originalPrice > detail.price ? (
         <p className="mt-1 text-lg text-strike line-through">
           {formatPrice(detail.originalPrice)}

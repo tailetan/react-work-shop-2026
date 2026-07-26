@@ -9,8 +9,8 @@ const item: ProductCardItem = {
   name: "Asgaard Sofa",
   description: "Modern upholstered sofa",
   image: "/images/product/product-01.png",
-  priceText: "Rp 25.000.000",
-  originalPriceText: "Rp 28.000.000",
+  priceText: "25.000.000 VND",
+  originalPriceText: "28.000.000 VND",
   badge: { label: "-11%", tone: "danger" }
 };
 
@@ -20,8 +20,8 @@ describe("ProductCard", () => {
 
     expect(screen.getByRole("heading", { name: "Asgaard Sofa" })).toBeInTheDocument();
     expect(screen.getByText("Modern upholstered sofa")).toBeInTheDocument();
-    expect(screen.getByText("Rp 25.000.000")).toBeInTheDocument();
-    expect(screen.getByText("Rp 28.000.000")).toBeInTheDocument();
+    expect(screen.getByText("25.000.000 VND")).toBeInTheDocument();
+    expect(screen.getByText("28.000.000 VND")).toBeInTheDocument();
     expect(screen.getByText("-11%")).toBeInTheDocument();
   });
 
@@ -40,7 +40,7 @@ describe("ProductCard", () => {
     );
 
     expect(screen.queryByText("-11%")).not.toBeInTheDocument();
-    expect(screen.queryByText("Rp 28.000.000")).not.toBeInTheDocument();
+    expect(screen.queryByText("28.000.000 VND")).not.toBeInTheDocument();
   });
 
   it("reports add-to-cart with the item", async () => {

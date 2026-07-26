@@ -9,8 +9,8 @@ describe("toProductCardItem", () => {
       name: "Asgaard Sofa",
       description: "Modern upholstered sofa for warm, minimal interiors.",
       image: "/images/product/product-01.png",
-      priceText: "Rp 25.000.000",
-      originalPriceText: "Rp 28.000.000",
+      priceText: "25.000.000 VND",
+      originalPriceText: "28.000.000 VND",
       badge: { label: "New", tone: "fresh" }
     });
   });
@@ -24,17 +24,33 @@ describe("toProductCardItem", () => {
 });
 
 describe("relatedToProductCardItem", () => {
-  it("passes through the pre-formatted prices", () => {
+  it("re-renders the API's rupiah prices in VND", () => {
     const related = productDetailFixture.relatedProducts[0]!;
 
+    // The fixture mirrors the API and ships "Rp 21.400.000".
+    expect(related.priceText).toBe("Rp 21.400.000");
     expect(relatedToProductCardItem(related)).toEqual({
       slug: "stuart-sofa",
       name: "Stuart Sofa",
       image: "/images/product/product-07.png",
-      priceText: "Rp 21.400.000",
+      priceText: "21.400.000 VND",
       originalPriceText: undefined,
       badge: null
     });
+  });
+
+  it("also converts the original price when present", () => {
+    const item = relatedToProductCardItem({
+      id: 6,
+      slug: "maya-three-seater",
+      name: "Maya Three Seater",
+      priceText: "Rp 22.900.000",
+      originalPriceText: "Rp 24.900.000",
+      thumbnail: "/images/product/product-06.png"
+    });
+
+    expect(item.priceText).toBe("22.900.000 VND");
+    expect(item.originalPriceText).toBe("24.900.000 VND");
   });
 
   it("keeps the New pill", () => {

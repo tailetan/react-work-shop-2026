@@ -12,7 +12,7 @@ export function SiteFooter() {
         <div>
           <h2 className="mb-12 text-2xl font-bold">Furniro.</h2>
           <p className="max-w-[285px] text-muted">
-            400 University Drive Suite 200 Coral Gables, FL 33134 USA
+            364 Cong Hoa Street, Tan Binh District
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export function SiteFooter() {
       </Container>
 
       <Container className="border-t border-line py-9 text-sm">
-        2026 Furniro. All rights reserved
+        2026 Furniro by Tai Le Tan. All rights reserved
       </Container>
     </footer>
   );

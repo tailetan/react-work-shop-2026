@@ -11,12 +11,13 @@ const blocks: InfoBlock[] = [
   {
     Icon: MapPinIcon,
     title: "Address",
-    lines: ["236 5th SE Avenue, New York NY10000, United States"]
+    lines: ["364 Cong Hoa Street, Tan Binh District"]
   },
   {
     Icon: PhoneIcon,
     title: "Phone",
-    lines: ["Mobile: +(84) 546-6789", "Hotline: +(84) 456-6789"]
+    // The design shows Mobile + Hotline; there is one number, so one line.
+    lines: ["Mobile: +(84)969004098"]
   },
   {
     Icon: ClockIcon,

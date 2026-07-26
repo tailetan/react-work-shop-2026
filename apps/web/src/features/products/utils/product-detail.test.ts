@@ -24,8 +24,8 @@ describe("toRelatedProduct", () => {
   it("formats both prices", () => {
     expect(toRelatedProduct(productFixtures[0]!)).toMatchObject({
       slug: "asgaard-sofa",
-      priceText: "Rp 25.000.000",
-      originalPriceText: "Rp 28.000.000",
+      priceText: "25.000.000 VND",
+      originalPriceText: "28.000.000 VND",
       badge: "New"
     });
   });
@@ -58,7 +58,7 @@ describe("createDetailFromProduct", () => {
 
   it("carries over the catalogue values", () => {
     expect(detail.slug).toBe("stuart-sofa");
-    expect(detail.priceText).toBe("Rp 21.400.000");
+    expect(detail.priceText).toBe("21.400.000 VND");
     expect(detail.category).toBe("Sofa");
     expect(detail.meta.sku).toBe("FN003");
   });

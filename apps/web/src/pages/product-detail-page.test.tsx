@@ -2,6 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useCartStore } from "@/features/cart/stores/cart-store";
+import { productDetailFixture } from "@/test/fixtures";
 import { mockApiFailure, mockApiResponses } from "@/test/http-mock";
 import { renderWithProviders } from "@/test/utils";
 import { ProductDetailPage } from "./product-detail-page";
@@ -26,7 +27,7 @@ describe("ProductDetailPage", () => {
     expect(
       await screen.findByRole("heading", { level: 1, name: "Asgaard Sofa" })
     ).toBeInTheDocument();
-    expect(screen.getByText("Rp 25.000.000")).toBeInTheDocument();
+    expect(screen.getByText("25.000.000 VND")).toBeInTheDocument();
     expect(screen.getByText("5 Customer Review")).toBeInTheDocument();
     expect(screen.getByText(": SS001")).toBeInTheDocument();
   });
@@ -71,6 +72,19 @@ describe("ProductDetailPage", () => {
       await screen.findByRole("heading", { name: "Related Products" })
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Stuart Sofa" })).toBeInTheDocument();
+  });
+
+  it("never leaks the API's rupiah prices into the page", async () => {
+    // The fixture mirrors the mock API, which ships priceText as "Rp ...".
+    expect(productDetailFixture.priceText).toContain("Rp");
+    expect(productDetailFixture.relatedProducts[0]?.priceText).toContain("Rp");
+
+    renderDetail("asgaard-sofa");
+    await screen.findByRole("heading", { name: "Related Products" });
+
+    expect(document.body.textContent).not.toMatch(/Rp\s?\d/);
+    expect(document.body.textContent).toContain("25.000.000 VND");
+    expect(document.body.textContent).toContain("21.400.000 VND");
   });
 
   it("renders the not-found page for an unknown slug", async () => {

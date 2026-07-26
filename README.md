@@ -152,3 +152,66 @@ pnpm build
 ### Deploy
 
 - Deploy to Vercel or another hosting platform if needed. (option)
+
+## Implementation Notes
+
+The Furniro storefront is implemented in `apps/web`. The `static/*.html` pages were used
+as the local reference for the Figma design, and the palette plus the Poppins type scale
+are declared once as Tailwind v4 theme tokens in `packages/ui/src/styles.css`.
+
+### Routes
+
+| Route            | Page                  |
+| ---------------- | --------------------- |
+| `/`              | Home                  |
+| `/shop`          | Shop                  |
+| `/product/:slug` | Product detail        |
+| `/cart`          | Cart                  |
+| `/checkout`      | Checkout              |
+| `/contact`       | Contact               |
+| `/about`         | About                 |
+| `*`              | Not found             |
+
+### Structure
+
+```txt
+apps/web/src/
+|-- app/            router, providers, route config
+|-- layout/         header, footer, page shell
+|-- components/     shared UI (banner, container, pagination, query states)
+|-- features/
+|   |-- products/   api, hooks, components, pure filter/badge/detail logic
+|   |-- cart/       persisted Zustand store, table, totals
+|   |-- checkout/   billing form, order summary, place-order mutation
+|   `-- contact/    contact form and details
+|-- pages/          one component per route
+|-- services/       Axios client and the mock endpoint map
+|-- lib/            query client factory
+|-- types/          API response contracts
+`-- utils/          formatting and error helpers
+```
+
+### State management
+
+- **Server state** is owned by TanStack Query (`features/*/hooks`).
+- **Cart state** is client state in a persisted Zustand store, because the mock cart
+  endpoints return fixed documents and cannot hold a basket.
+- **Shop filters** live in the URL, so a filtered or paginated view is shareable.
+- **Form and variant state** stays local to its component.
+
+### Mock API notes
+
+- `productDetails` only contains products 1 and 2, while `products` lists 8. Detail pages
+  for the remaining slugs are synthesised from the catalogue entry
+  (`features/products/utils/product-detail.ts`) instead of returning a 404.
+- The write endpoints (`checkout`, `contact`, `cart*`) answer `200` with an empty body, so
+  a resolved request is treated as success and the order reference is generated locally.
+
+### Testing
+
+```bash
+pnpm --filter @react-workshop/web test:coverage
+```
+
+158 tests cover the pure logic, the API layer, the shared components and every page.
+Coverage is ~96% of statements with a 70% threshold enforced in `vitest.config.ts`.

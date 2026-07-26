@@ -35,8 +35,8 @@ describe("CartPage", () => {
 
     expect(screen.getByRole("table")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Cart Totals" })).toBeInTheDocument();
-    // 2 x Rp 25.000.000 appears as the line subtotal, the cart subtotal and the total.
-    expect(screen.getAllByText("Rp 50.000.000").length).toBeGreaterThanOrEqual(3);
+    // 2 x 25.000.000 appears as the line subtotal, the cart subtotal and the total.
+    expect(screen.getAllByText("50.000.000 VND").length).toBeGreaterThanOrEqual(3);
     expect(screen.getByRole("link", { name: "Check Out" })).toHaveAttribute(
       "href",
       "/checkout"
