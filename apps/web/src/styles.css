@@ -1,10 +1,14 @@
 @import "@react-workshop/ui/styles.css";
 
+/* Tailwind scans the Vite root by default; the shared UI package sits outside
+ * it, so its class names are registered explicitly. */
+@source "../../../packages/ui/src";
+
 body {
   margin: 0;
   min-width: 320px;
-  background: #f4f4f5;
-  color: #18181b;
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }

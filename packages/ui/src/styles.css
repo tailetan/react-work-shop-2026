@@ -1,2 +1,24 @@
 @import "tailwindcss";
 
+/*
+ * Furniro design tokens taken from the Figma UI kit and mirrored in the
+ * `static/*.html` reference pages. They live in the shared UI package so the
+ * web app and Storybook resolve the same palette and type scale.
+ */
+@theme {
+  --color-brand: #b88e2f;
+  --color-brand-dark: #9d7626;
+  --color-beige: #f9f1e7;
+  --color-cream: #fff3e3;
+  --color-sand: #fcf8f3;
+  --color-shell: #faf3ea;
+  --color-product: #f4f5f7;
+  --color-dark: #3a3a3a;
+  --color-muted: #898989;
+  --color-line: #d9d9d9;
+  --color-danger: #e97171;
+  --color-fresh: #2ec1ac;
+  --color-strike: #b0b0b0;
+
+  --font-sans: "Poppins", Arial, ui-sans-serif, system-ui, sans-serif;
+}

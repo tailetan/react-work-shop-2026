@@ -7,6 +7,7 @@
       "@react-workshop/ui/button": ["../../packages/ui/src/button/button.tsx"],
       "@react-workshop/ui/card": ["../../packages/ui/src/card/card.tsx"],
       "@react-workshop/ui/input": ["../../packages/ui/src/input/input.tsx"],
+      "@react-workshop/ui/utils": ["../../packages/ui/src/utils.ts"],
       "@react-workshop/ui/styles.css": ["../../packages/ui/src/styles.css"]
     }
   },
